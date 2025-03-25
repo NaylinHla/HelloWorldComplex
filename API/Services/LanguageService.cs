@@ -1,4 +1,5 @@
 using Messages;
+using Monitoring;
 
 namespace API.Services;
 
@@ -16,6 +17,7 @@ public class LanguageService
     
     public LanguageResponse GetLanguages()
     {
+        MonitorService.Log.Debug("Getting languages");
         return new LanguageResponse
         {
             Languages = GreetingService.Instance.GetLanguages()

@@ -1,3 +1,4 @@
+using Monitoring;
 namespace API.Services;
 
 public class PlanetService
@@ -11,6 +12,7 @@ public class PlanetService
     
     public PlanetResponse GetPlanet()
     {
+        MonitorService.Log.Debug("Getting planets");
         var planets = new[]
         {
             "Mercury",
@@ -22,6 +24,8 @@ public class PlanetService
             "Uranus",
             "Neptune"
         };
+        
+        MonitorService.Log.Debug("Got {planets.Count} planets :)", planets.Count());
 
         var index = new Random(DateTime.Now.Millisecond).Next(1, planets.Length+1);
         return new PlanetResponse

@@ -1,3 +1,5 @@
+using Monitoring;
+
 namespace API.Services;
 
 public class GreetingService
@@ -14,6 +16,8 @@ public class GreetingService
     
     public GreetingResponse Greet(Messages.GreetingRequest request)
     {
+        MonitorService.Log.Debug("GreetingService::Greet");
+        
         var language = request.LanguageCode;
         var greeting = language switch
         {
@@ -35,6 +39,8 @@ public class GreetingService
     
     public string[] GetLanguages()
     {
+        MonitorService.Log.Debug("GetLanguages");
+        
         return new [] { "en", "es", "fr", "de", "it", "pt", "ru", "zh", "ya", "ar", "hi", "sw" };
     }
 }

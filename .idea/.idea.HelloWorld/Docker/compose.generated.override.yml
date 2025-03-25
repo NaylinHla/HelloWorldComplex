@@ -1,0 +1,22 @@
+# This is a generated file. Not intended for manual editing.
+version: "3.9"
+services:
+  api:
+    build:
+      context: "C:\\Users\\nayli\\Documents\\Github\\HelloWorldComplex"
+      dockerfile: "API/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net6.0/API.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "api:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\nayli\\Documents\\Github\\HelloWorldComplex\\API:/app:rw"
+    - "C:\\Users\\nayli\\Documents\\Github\\HelloWorldComplex:/src:rw"
+    - "C:\\Users\\nayli\\.nuget\\packages:/root/.nuget/packages"
+    working_dir: "/app"
