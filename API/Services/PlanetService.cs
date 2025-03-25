@@ -12,7 +12,9 @@ public class PlanetService
     
     public PlanetResponse GetPlanet()
     {
+        using var activity = MonitorService.ActivitySource.StartActivity();
         MonitorService.Log.Debug("Getting planets");
+        
         var planets = new[]
         {
             "Mercury",

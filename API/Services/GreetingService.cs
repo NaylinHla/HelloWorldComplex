@@ -16,29 +16,33 @@ public class GreetingService
     
     public GreetingResponse Greet(Messages.GreetingRequest request)
     {
-        MonitorService.Log.Debug("GreetingService::Greet");
-        
-        var language = request.LanguageCode;
-        var greeting = language switch
+        using (var activity = MonitorService.ActivitySource.StartActivity())
         {
-            "en" => "Hello",
-            "es" => "Hola",
-            "fr" => "Bonjour",
-            "de" => "Hallo",
-            "it" => "Ciao",
-            "pt" => "Olá",
-            "ru" => "Привет",
-            "zh" => "你好",
-            "ja" => "こんにちは",
-            "ar" => "مرحبا",
-            "hi" => "नमस्ते",
-            "sw" => "Hujambo"
-        };
-        return new GreetingResponse { Greeting = greeting };
+            MonitorService.Log.Debug("GreetingService::Greet");
+
+            var language = request.LanguageCode;
+            var greeting = language switch
+            {
+                "en" => "Hello",
+                "es" => "Hola",
+                "fr" => "Bonjour",
+                "de" => "Hallo",
+                "it" => "Ciao",
+                "pt" => "Olá",
+                "ru" => "Привет",
+                "zh" => "你好",
+                "ja" => "こんにちは",
+                "ar" => "مرحبا",
+                "hi" => "नमस्ते",
+                "sw" => "Hujambo"
+            };
+            return new GreetingResponse { Greeting = greeting };
+        }
     }
     
     public string[] GetLanguages()
     {
+        using var activity = MonitorService.ActivitySource.StartActivity();
         MonitorService.Log.Debug("GetLanguages");
         
         return new [] { "en", "es", "fr", "de", "it", "pt", "ru", "zh", "ya", "ar", "hi", "sw" };

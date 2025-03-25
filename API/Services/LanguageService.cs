@@ -17,7 +17,9 @@ public class LanguageService
     
     public LanguageResponse GetLanguages()
     {
+        using var activity = MonitorService.ActivitySource.StartActivity();
         MonitorService.Log.Debug("Getting languages");
+        
         return new LanguageResponse
         {
             Languages = GreetingService.Instance.GetLanguages()
